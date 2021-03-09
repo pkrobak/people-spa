@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*@import 'animations.scss'; Szkoda czasu na dochodzenie dlaczego to nie działa. Albo jakas paczka nie pasuje, albo cos nie tak w konfiguracji webpacka zapewne *!*/
+
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+    transform: translateX(2em);
+}
+.fade-enter-active, .fade-leave-active {
+    transition: all .3s ease;
+}
+
+#app {
+    overflow: hidden;
+    width: 100vw;
+}
