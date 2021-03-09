@@ -8,6 +8,10 @@ Nie wiem czy takie są, ale ja używałem takich wersji
 ## Uruchomienie
 Standardowo jak w laraverze
 - Skopiuj .env z exampla i uzupelnij
+- `git clone https://github.com/laradock/laradock.git`
+- `cd laradock`
+- `cp .env.example .env`
+- Uzupelnij .env
 - `php artisan migrate`
 - `php artisan key:generate`
 - `php artisan jwt:secret`
