@@ -78,14 +78,10 @@ export default {
                 remember: true,
                 fetchUser: false,
                 staySignedIn: true,
-                success(res) {
-                    this.$auth.remember(JSON.stringify({
-                        name: this.$auth.user().name
-                    }));
-                },
-                error(res) {
-                    console.error(res)
-                }
+            })
+            .then(res => {
+                axios.defaults.headers.common['Content-Type'] = 'application/json';
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.access_token;
             })
         },
     }
