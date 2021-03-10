@@ -82,6 +82,7 @@ export default {
             .then(res => {
                 axios.defaults.headers.common['Content-Type'] = 'application/json';
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.access_token;
+                this.$store.dispatch('character/fetch', {page: 1});
             })
         },
     }
