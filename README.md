@@ -12,6 +12,8 @@ Standardowo jak w laraverze
 - `cd laradock`
 - `cp .env.example .env`
 - Uzupelnij .env
+- `docker-compose up -d workspace mysql nginx`
+- `docker exec -it laradock_workspace_1 bash`
 - `php artisan migrate`
 - `php artisan key:generate`
 - `php artisan jwt:secret`
