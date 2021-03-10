@@ -42,6 +42,7 @@ export default {
     methods: {
         fetch() {
             const query = clear({...this.$route.query, ...this.form.data()});
+            delete query.page;
             this.$router.push({
                 name: routes.characters,
                 query
