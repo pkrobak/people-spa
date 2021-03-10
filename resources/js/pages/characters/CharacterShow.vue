@@ -84,7 +84,11 @@ export default {
     methods: {
         update() {
             this.$store.dispatch('character/update', this.value)
-            this.$router.back();
+                .then(response => {
+                    if (response.status === 200) {
+                        this.$router.back();
+                    }
+                })
         },
     },
 }

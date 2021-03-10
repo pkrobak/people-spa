@@ -16,7 +16,7 @@ export default {
     actions: {
         update({state, commit}, {id, name, gender, culture, url, died, born}) {
             commit('setUpdating', true)
-            api.update(id, {name, gender, culture, url, died, born})
+            return api.update(id, {name, gender, culture, url, died, born})
                 .then(({data}) => {
                     commit('update', data.character)
                     commit('setUpdating', false)

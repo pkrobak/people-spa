@@ -71,7 +71,10 @@ router.beforeEach((to, from, next) => {
             return next({name: routes.characters, params: {page: 1}})
         }
 
-        Vue.dispatch('character/fetch', getPageById(parseInt(id)))
+        Vue.dispatch('character/fetch', {
+            ...to.query,
+            page: getPageById(parseInt(id))
+        })
             .then(() => next());
     }
 })
