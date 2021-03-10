@@ -21,6 +21,10 @@ export default {
                     commit('update', data.character)
                     commit('setUpdating', false)
                 })
+                .catch(e => {
+                    commit('setUpdating', false)
+                    throw e;
+                })
         },
         fetch({commit}, params) {
             commit('setLoading', true)

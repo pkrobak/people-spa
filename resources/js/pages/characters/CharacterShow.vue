@@ -3,29 +3,31 @@
         <pulse-loader v-if="isLoading"></pulse-loader>
         <template v-else>
             <div>
-                <form @submit.prevent="">
-                    <input-field placeholder="John Doe"
-                                 rules="string|max:191"
-                                 label="Name"
-                                 validator-key="name"
-                                 :value="value.name"
-                                 @update:value="value.name = $event.target.value"
-                    ></input-field>
-                    <input-field placeholder="www.example.com"
-                                 :rules="{ regex: /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ }"
-                                 label="Url"
-                                 validator-key="url"
-                                 :value="value.url"
-                                 @update:value="value.url = $event.target.value"
-                    ></input-field>
-                    <input-field placeholder="Culture"
-                                 rules="string|max:191"
-                                 label="Culture"
-                                 validator-key="culture"
-                                 :value="value.culture"
-                                 @update:value="value.culture = $event.target.value"
-                    ></input-field>
-                </form>
+                <validation-observer v-slot="{ invalid }" ref="observer">
+                    <form @submit.prevent="">
+                        <input-field placeholder="John Doe"
+                                     rules="string|max:191"
+                                     label="Name"
+                                     validator-key="name"
+                                     :value="value.name"
+                                     @update:value="value.name = $event.target.value"
+                        ></input-field>
+                        <input-field placeholder="www.example.com"
+                                     :rules="{ regex: /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ }"
+                                     label="Url"
+                                     validator-key="url"
+                                     :value="value.url"
+                                     @update:value="value.url = $event.target.value"
+                        ></input-field>
+                        <input-field placeholder="Culture"
+                                     rules="string|max:191"
+                                     label="Culture"
+                                     validator-key="culture"
+                                     :value="value.culture"
+                                     @update:value="value.culture = $event.target.value"
+                        ></input-field>
+                    </form>
+                </validation-observer>
             </div>
             <div class="flex justify-between">
                 <div>
@@ -84,11 +86,8 @@ export default {
     methods: {
         update() {
             this.$store.dispatch('character/update', this.value)
-                .then(response => {
-                    if (response.status === 200) {
-                        this.$router.back();
-                    }
-                })
+                .then(() => this.$router.back())
+                .catch(this.errorsFromResponse)
         },
     },
 }
