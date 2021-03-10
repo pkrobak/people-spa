@@ -59,7 +59,7 @@ router.beforeEach((to, from, next) => {
     }
 
     if (to.name === routes.characters) {
-        if (!to.query.page) {
+        if (!to.query.page || !Number.isInteger(parseInt(to.query.page))) {
             to.query.page = 1;
         }
         Vue.dispatch('character/fetch', to.query)

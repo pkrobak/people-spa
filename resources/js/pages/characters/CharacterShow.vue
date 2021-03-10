@@ -76,7 +76,7 @@ export default {
                 return this.value = {...this.byId(this.id)};
             },
             set(value) {}
-        }
+        },
     },
     mounted() {
         this.value = {...this.byId(this.id)};

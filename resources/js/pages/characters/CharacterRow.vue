@@ -1,6 +1,6 @@
 <template>
     <tr class="border-b border-gray-200 hover:bg-gray-100">
-        <td class="py-3 px-6 text-left whitespace-nowrap">{{ index }}</td>
+        <td class="py-3 px-6 text-left whitespace-nowrap">{{ rowIndex }}</td>
         <td class="py-3 px-6 text-left whitespace-nowrap">{{ character.name }}</td>
         <td class="py-3 px-6 text-left whitespace-nowrap">
             <external-link :url=" character.url"></external-link>
@@ -29,6 +29,7 @@
 import ExternalLink from "../../components/ExternalLink";
 import routes from "../../router/routes";
 import TheLink from "../../components/TheLink";
+import {PER_PAGE} from "../../utils/pagination";
 
 export default {
     name: "CharacterRow",
@@ -42,5 +43,18 @@ export default {
             show: routes.character
         }
     },
+    computed: {
+        rowIndex() {
+            return (this.getPage * PER_PAGE) + ((this.index + 1) - PER_PAGE)
+        },
+        getPage() {
+            const page = this.$route.query.page;
+            if (Number.isInteger(parseInt(page))) {
+                return page;
+            }
+
+            return 1;
+        }
+    }
 }
 </script>

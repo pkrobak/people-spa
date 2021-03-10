@@ -30,7 +30,7 @@
             <tr v-for="(character, index) in all" is="character-row"
                 :key="character.id"
                 :character="character"
-                :index="$route.query.page * perPage + ++index - perPage"
+                :index="index"
             ></tr>
             </tbody>
         </table>
@@ -44,7 +44,6 @@ import PaginationLinks from "../../components/PaginationLinks";
 import CharacterFilters from "./CharacterFilters";
 import {mapGetters} from 'vuex';
 import loaderMixin from "../../mixins/loaderMixin";
-import {PER_PAGE} from "../../utils/pagination";
 
 export default {
     name: "CharactersList",
@@ -54,13 +53,8 @@ export default {
         PaginationLinks,
         CharacterRow,
     },
-    data() {
-        return {
-            perPage: PER_PAGE
-        }
-    },
     computed: {
-        ...mapGetters('character', ['all', 'isLoading'])
+        ...mapGetters('character', ['all', 'isLoading']),
     },
 }
 </script>

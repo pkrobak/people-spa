@@ -24,6 +24,7 @@ export default {
         },
         fetch({commit}, params) {
             commit('setLoading', true)
+            commit('setCharacters', []);
             api.list(params)
                 .then(({data}) => {
                     commit('setPagination', data)

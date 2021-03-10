@@ -33,8 +33,17 @@ export default {
     },
     methods: {
         changePage(offset) {
-            const page = parseInt(this.$route.query.page) + offset;
-            this.$router.push({name: routes.characters, query: {...this.$route.query, page: page}})
+            function getPage(offset) {
+                const page = parseInt(this.$route.query.page);
+                if (Number.isInteger(page)) {
+                    return page + offset;
+                }
+
+                return 1 + offset;
+            }
+
+            const page = getPage.call(this, offset);
+            this.$router.push({name: routes.characters, query: {...this.$route.query, page}})
             this.$store.dispatch('character/fetch', {
                 ...this.$route.query,
                 page
