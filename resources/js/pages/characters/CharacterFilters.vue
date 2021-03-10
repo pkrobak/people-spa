@@ -50,9 +50,15 @@ export default {
             this.$store.dispatch('character/fetch', query);
         }
     },
+    mounted() {
+        const name = this.$route.query.name;
+        if (name) {
+            this.form.name = name;
+        }
+        const gender = this.$route.query.gender;
+        if (gender) {
+            this.form.gender = gender;
+        }
+    }
 }
 </script>
-
-<style scoped>
-
-</style>

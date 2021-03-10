@@ -35,6 +35,7 @@ export default {
                     commit('setCharacters', data.data)
                     commit('setLoading', false)
                 })
+                .catch(() => commit('setLoading', false))
         }
     },
     mutations: {
