@@ -20,4 +20,4 @@ Standardowo jak w laraverze
 - `php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"`
 - `npm install`
 - `npm run dev/prod`
-
+- Aby pobrać postacie uruchom komende `php artisan characters:download`
